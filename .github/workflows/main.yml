@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - "*"
+  workflow_run:
+    workflows:
+      - release
 
 jobs:
 
