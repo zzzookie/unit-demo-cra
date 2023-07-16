@@ -36,6 +36,7 @@ jobs:
           myToken: ${{ github.token }}
 
       - name: Write Changelog File
+        needs: changelog_gen
         uses: DamianReeves/write-file-action@v1.2
         with:
           path: changelog.md
@@ -54,6 +55,7 @@ jobs:
           message: 'Changelog updated - ${{ env.LAST_TAG }} added'
 
       - name: Create release
+        needs: changelog_gen
         run: |
           git config --local user.email "$USER_EMAIL"
           git config --local user.name "$USER_NAME"
@@ -71,6 +73,7 @@ jobs:
 
       
       - name: Create Issue
+        needs: changelog_gen
         run: |
           GITHUB_TOKEN=${{ github.token }}
           REPO_OWNER=${{ github.repository_owner }}
