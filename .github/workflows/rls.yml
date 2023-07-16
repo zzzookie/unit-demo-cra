@@ -3,7 +3,7 @@ name: CreateRelease.v2
 on:
   push:
     tags:
-      - v*
+      - 'v\d+'
       
 jobs:
   create_release:
