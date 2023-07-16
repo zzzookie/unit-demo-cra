@@ -42,7 +42,7 @@ jobs:
           path: changelog.md
           write-mode: append
           contents: |
-            ## Release ${TAG_NAME}
+            ## Release ${{ env.TAG_NAME }}
             Changes:
             ${{ steps.changelog_gen.outputs.changelog }}
             
@@ -52,7 +52,7 @@ jobs:
           github_token: ${{ github.token }}
           branch: tests
           force: true
-          message: 'Changelog updated - {LAST_TAG} $LAST_TAG ${{ LAST_TAG }} $(LAST_TAG) added'
+          message: 'Changelog updated - ${{ env.LAST_TAG }} added'
 
       - name: Create release
         run: |
