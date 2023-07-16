@@ -24,14 +24,11 @@ jobs:
 
       - name: Generate Changelog
         id: changelog_gen
-        uses: mikepenz/release-changelog-builder-action@v4.0.0-rc03
+        uses: metcalfc/changelog-generator@v4.0.0
         with:
-          fromTag: ${TAG_NAME}
-          toTag: ${LAST_TAG}
-          outputFile: ./changelog.md
+          myToken: ${GH_TOKEN}
 
       - name: read_output
         run: |
           echo "CHANGELOG=${{steps.changelog_gen.outputs.changelog}}" >> $GITHUB_ENV
-          echo "CHN_FROM=${{steps.changelog_gen.outputs.fromTag}}" >> $GITHUB_ENV
-          echo "CHN_TO=${{steps.changelog_gen.outputs.toTag}}" >> $GITHUB_ENV
+          echo "${{ steps.changelog_gen.outputs.changelog }}" | cat - changelog.md > temp && mv temp changelog.md
