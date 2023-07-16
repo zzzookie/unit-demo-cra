@@ -1,7 +1,9 @@
 name: CreateRelease.v2
 
 on:
-  push
+  push:
+    branches:
+     - '*'
       
 jobs:
   create_release:
