@@ -56,4 +56,22 @@ Changes:
 - [bba4568](http://github.com/zzzookie/unit-demo-cra/commit/bba45684a06823e78dc682b9d9bb9a876a94e003) - ci: issue test v1
 - [1b274f1](http://github.com/zzzookie/unit-demo-cra/commit/1b274f1973efa59d13a1837174fc78646ef67412) - Merge branch 'tests' of github.com:zzzookie/unit-demo-cra into tests
 - [d72a9a6](http://github.com/zzzookie/unit-demo-cra/commit/d72a9a6e3fe97bfa321d863cfed663b4266c35b3) - ci: issue creating test v3
+- [b943120](http://github.com/zzzookie/unit-demo-cra/commit/b943120bb9a93bba1d851c2b97f9c57aa4b4c8de) - Changelog updated -  added## Release v18
+Changes:
+- [9c87c4e](http://github.com/zzzookie/unit-demo-cra/commit/9c87c4e5f04ea1f83c77e76d2425d280d5af4e4d) - ci: merge branch 'tests' of github.com:zzzookie/unit-demo-cra into tests
+- [bd3943a](http://github.com/zzzookie/unit-demo-cra/commit/bd3943a8c5f2afd5e03b322eafe02099c86eb074) - ci: release with issue v3
+- [c20a68c](http://github.com/zzzookie/unit-demo-cra/commit/c20a68c5d4bc188a6988dac63abb3cb7718aa575) - Changelog updated -  added
+- [e518ee9](http://github.com/zzzookie/unit-demo-cra/commit/e518ee9417998b9a45493e46d20e8d12773553c4) - ci: release with issue v3
+- [102a5de](http://github.com/zzzookie/unit-demo-cra/commit/102a5ded1054471299f3f2d07b5100cde11fd4fb) - ci: merge branch 'tests'
+- [e38b9b3](http://github.com/zzzookie/unit-demo-cra/commit/e38b9b3ee9b6d931ad2c186599ebdba23f26b76d) - ci: release with issue v2
+- [ad7cbcf](http://github.com/zzzookie/unit-demo-cra/commit/ad7cbcf52d0f8c898d4c94bbb0c582355630e45b) - Changelog updated -  added
+- [1486f10](http://github.com/zzzookie/unit-demo-cra/commit/1486f104414fcadd116fffa1dce041acc2e4d461) - ci: release with issue v1
+- [1851ab8](http://github.com/zzzookie/unit-demo-cra/commit/1851ab8f2111779778400e9609e9c77878f78174) - ci: issue-test v8
+- [683b8ec](http://github.com/zzzookie/unit-demo-cra/commit/683b8ecefec456fb40744de4138f05c6fe411580) - ci: issue-test v7
+- [b303e82](http://github.com/zzzookie/unit-demo-cra/commit/b303e820996c1a41bb5c727c2d1e01e2c789de21) - ci: issue-test v6
+- [57ff014](http://github.com/zzzookie/unit-demo-cra/commit/57ff0145570f5dd2ebc02ee20a4d827e71ed5cd7) - ci: issue test v5
+- [37138d5](http://github.com/zzzookie/unit-demo-cra/commit/37138d5f36c714ffb1e527f21e49d741e5f474d1) - ci: issue test v4
+- [bba4568](http://github.com/zzzookie/unit-demo-cra/commit/bba45684a06823e78dc682b9d9bb9a876a94e003) - ci: issue test v1
+- [1b274f1](http://github.com/zzzookie/unit-demo-cra/commit/1b274f1973efa59d13a1837174fc78646ef67412) - Merge branch 'tests' of github.com:zzzookie/unit-demo-cra into tests
+- [d72a9a6](http://github.com/zzzookie/unit-demo-cra/commit/d72a9a6e3fe97bfa321d863cfed663b4266c35b3) - ci: issue creating test v3
 - [b943120](http://github.com/zzzookie/unit-demo-cra/commit/b943120bb9a93bba1d851c2b97f9c57aa4b4c8de) - Changelog updated -  added
