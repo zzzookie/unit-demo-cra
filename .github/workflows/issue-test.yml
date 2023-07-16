@@ -6,8 +6,6 @@ on:
 jobs:
   issue-test:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
     permissions:
       contents: write
       issues: write 
@@ -21,8 +19,6 @@ jobs:
 
       - name: Set up environment variables
         run: |
-          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-          echo "LAST_TAG=$(git describe --tags --abbrev=0 ${TAG_NAME}^)" >> $GITHUB_ENV
           echo "USER_NAME=$(git --no-pager show -s --format='%aN')" >> $GITHUB_ENV
           echo "USER_EMAIL=$(git --no-pager show -s --format='%aE')" >> $GITHUB_ENV
       
@@ -34,6 +30,6 @@ jobs:
           TITLE='New Issue'
           BODY="Release.\n\n**Author**: ${{ github.actor }}\n**Date**: ${{ github.event.head_commit.timestamp }}"
 
-          gh auth login --with-token <<< "${GH_TOKEN}"
+          gh auth login --with-token <<< "${GITHUB_TOKEN}"
           ISSUE_NUMBER=$(gh issue create --title "$TITLE" --body "$BODY" --json number --jq .number)
           gh issue label add $ISSUE_NUMBER --label "RELEASE"
