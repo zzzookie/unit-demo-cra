@@ -1,0 +1,20 @@
+name: CreateRelease.v2
+
+on:
+  push:
+    branches:
+     - '*'
+      
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    permissions:
+      contents: write
+    steps:
+    
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0

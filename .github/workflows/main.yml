@@ -1,0 +1,105 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - "*"
+  workflow_run:
+    workflows:
+      - release
+
+jobs:
+
+  commitlint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install required dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y sudo
+          sudo apt install -y git curl
+          curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+          sudo DEBIAN_FRONTEND=noninteractive apt install -y nodejs
+      - name: Install commitlint
+        run: |
+          npm install conventional-changelog-conventionalcommits --force
+          npm install commitlint@latest --force
+
+      - name: Validate current commit with commitlint
+        if: github.event_name == 'push' || github.event_name == 'workflow_run'
+        run: |
+          npx commitlint --from HEAD~1 --to HEAD --verbose
+          echo "::set-output name=commitlint_result::$result"
+
+      - name: Validate PR commits with commitlint
+        if: github.event_name == 'pull_request' || github.event_name == 'workflow_run'
+        run: |
+          npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
+          echo "::set-output name=commitlint_result::$result"
+          
+      - name: Check test result
+        run: |
+          exit_code=$?
+          if [ $exit_code -ne 0 ]; then
+            echo "Tests failed. Exiting with code $exit_code."
+            exit $exit_code
+          fi
+
+  install:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Install required dependencies
+        run: npm ci --force
+
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Install required dependencies
+        run: npm ci --force
+      
+      - name: Run unit tests
+        run: npm run test-ci
+        
+      - name: Check test result
+        run: |
+          exit_code=$?
+          if [ $exit_code -ne 0 ]; then
+            echo "Tests failed. Exiting with code $exit_code."
+            exit $exit_code
+          fi
+
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Install required dependencies
+        run: npm ci --force
+        
+      - name: Linter
+        run: npm run lint
+        
+      - name: Check ESLint result
+        run: |
+          exit_code=$?
+          if [ $exit_code -ne 0 ]; then
+            echo "ESLint check failed. Exiting with code $exit_code."
+            exit $exit_code
+          fi
