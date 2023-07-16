@@ -8,8 +8,6 @@ on:
 jobs:
   create_release:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
     permissions:
       contents: write
       issues: write 
@@ -71,17 +69,17 @@ jobs:
           ${{ steps.changelog_gen.outputs.changelog }}"
           gh release create ${TAG_NAME} -t "${release_title}" -n "${release_body}"
 
-      - name: Create issue
-        id: issue-create
-        uses: JasonEtco/create-an-issue@v2.9.1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          title: 'Release ${{ env.TAG_NAME }}'
-          labels: RELEASE
-          milestone: null
-          update_existing: true
+      
+      - name: Create Issue
+        run: |
+          GITHUB_TOKEN=${{ github.token }}
+          REPO_OWNER=${{ github.repository_owner }}
+          REPO_NAME=${{ github.repository }}
+          CHANGELOG=${{ steps.changelog_gen.outputs.changelog }}
+          TZ="Europe/Moscow"
+          TIMESTAMP=$(date +"%d-%m-%Y %H:%M") MSK
+          TITLE='Release ${{ env.TAG_NAME }}'
+          BODY="## Release ${{ env.TAG_NAME }}<br><br>**Author**: ${{ github.actor }}<br>**Date**: $TIMESTAMP"<br><br>## Changelog:<br>$CHANGELOG
 
-      - name: Read issue number
-        id: issue-read
-        run: echo "ISSUE_NUMBER=${{ steps.issue-create.outputs.number }}" >> $GITHUB_ENV
+          gh auth login --with-token <<< "${GITHUB_TOKEN}"
+          gh issue create --title "$TITLE" --body "$BODY" --label "RELEASE"
