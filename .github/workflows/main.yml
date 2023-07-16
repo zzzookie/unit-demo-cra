@@ -4,9 +4,11 @@ on:
   pull_request:
     branches:
       - "*"
-  workflow_run:
-    workflows:
-      - release
+  #workflow_run:
+  #  workflows:
+  #    - release
+  repository_dispatch:
+    types: [checks]
 
 jobs:
 

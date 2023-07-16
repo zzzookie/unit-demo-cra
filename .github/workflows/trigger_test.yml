@@ -1,0 +1,35 @@
+name: TriggerTest
+
+on:
+  - push
+
+jobs:
+  dispatch_test:
+    runs-on: ubuntu-22.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+
+      - name: Set up environment variables
+        run: |
+          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          echo "LAST_TAG=$(git describe --abbrev=0 --tags v*)" >> $GITHUB_ENV
+          echo "USER_NAME=$(git --no-pager show -s --format='%aN')" >> $GITHUB_ENV
+          echo "USER_EMAIL=$(git --no-pager show -s --format='%aE')" >> $GITHUB_ENV
+
+      - name: Get check results
+        id: check_results
+        uses: adityakar/workflow-dispatcher@v1.0
+        with:
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          token: $GH_TOKEN
+          event_type: checks
+          wait_time: 15
+          max_time: 120
+          client_payload: '{"git-ref": "${{ github.event.inputs.git-ref }}"}'
+
+      - name: Check Output
+        run: |
+          echo "TEST_WORKFLOW_ID=${steps.check_results.outputs.workflow-id}" >> $GITHUB_ENV
+          echo "TEST_RESULT=${steps.check_results.outputs.conclusion}" >> $GITHUB_ENV
