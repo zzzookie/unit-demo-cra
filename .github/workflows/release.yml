@@ -22,9 +22,6 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-          echo "TAG_NAME2=${GITHUB_REF_NAME}" >> $GITHUB_ENV
-          echo "TAG_NAME3=${{  github.ref_name }}" >> $GITHUB_ENV
-          echo "RELEASE_VERSION=$new_tag" >> $GITHUB_ENV
           echo "USER_NAME=$(git --no-pager show -s --format='%aN')" >> $GITHUB_ENV
           echo "USER_EMAIL=$(git --no-pager show -s --format='%aE')" >> $GITHUB_ENV
           
@@ -45,4 +42,4 @@ jobs:
 
           **Changelog**:
           ${changelog}"
-          gh release create ${release_version} -t "${release_title}" -n "${release_body}"
+          gh release create ${TAG_NAME} -t "${release_title}" -n "${release_body}"
