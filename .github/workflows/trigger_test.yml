@@ -23,11 +23,11 @@ jobs:
         with:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
-          token: $GH_TOKEN
+          token: ${GH_TOKEN}
           event_type: checks
           wait_time: 15
           max_time: 120
-          client_payload: '{"git-ref": "${{ github.event.inputs.git-ref }}"}'
+          client_payload: '{"git-ref": "${{ github.ref }}", "git-sha": "${{ github.sha }}"}'
 
       - name: Check Output
         run: |
