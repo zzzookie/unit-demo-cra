@@ -4,7 +4,7 @@ on:
   - push
 
 jobs:
-  dispatch_test:
+  changelog_test:
     runs-on: ubuntu-22.04
     env:
       GH_TOKEN: ${{ github.token }}
@@ -26,8 +26,8 @@ jobs:
         id: changelog_gen
         uses: mikepenz/release-changelog-builder-action@v4.0.0-rc03
         with:
-          fromTag: ${LAST_TAG}
-          toTag: ${TAG_NAME}
+          fromTag: ${TAG_NAME}
+          toTag: ${LAST_TAG}
           outputFile: ./changelog.md
 
       - name: read_output
