@@ -2,10 +2,10 @@ name: Create Release
 
 on:
   push:
+    tags:
+      - 'v[0-9]+'
     branches:
       - "*"
-    tags:
-      - 'v*'
 
 jobs:
   create_release:
