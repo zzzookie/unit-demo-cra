@@ -59,7 +59,6 @@ jobs:
         run: |
           git config --local user.email "$USER_EMAIL"
           git config --local user.name "$USER_NAME"
-          changelog=$(git log $(git describe --tags --abbrev=0)..HEAD --oneline)
           release_version=${TAG_NAME}
           release_date=$(date -u +"%d-%m-%Y")
           release_title="Release ${TAG_NAME}"
@@ -77,11 +76,10 @@ jobs:
           GITHUB_TOKEN=${{ github.token }}
           REPO_OWNER=${{ github.repository_owner }}
           REPO_NAME=${{ github.repository }}
-          CHANGELOG=${{ steps.changelog_gen.outputs.changelog }}
           TZ="Europe/Moscow"
-          TIMESTAMP=$(date +"%d-%m-%Y %H:%M") MSK
+          TIMESTAMP=$(date +"%d-%m-%Y %H:%M")
           TITLE='Release ${{ env.TAG_NAME }}'
-          BODY="## Release ${{ env.TAG_NAME }}<br><br>**Author**: @${{ github.actor }}<br>**Date**: $TIMESTAMP"<br><br>## Changelog:<br>$CHANGELOG
+          BODY="## Release ${{ env.TAG_NAME }}<br><br>**Author**: @${{ github.actor }}<br>**Date**: $TIMESTAMP MSK<br><br>## Changelog:<br>${{ steps.changelog_gen.outputs.changelog }}"
 
           gh auth login --with-token <<< "${GITHUB_TOKEN}"
           gh issue create --title "$TITLE" --body "$BODY" --label "RELEASE"
