@@ -7,7 +7,6 @@ jobs:
   changelog_test:
     runs-on: ubuntu-22.04
     env:
-      GH_TOKEN: ${{ github.token }}
       TAG_NAME: ${{ github.sha }}
     permissions: 
       contents: write
@@ -30,5 +29,4 @@ jobs:
 
       - name: read_output
         run: |
-          echo "CHANGELOG=${{steps.changelog_gen.outputs.changelog}}" >> $GITHUB_ENV
           echo "${{ steps.changelog_gen.outputs.changelog }}" | cat - changelog.md > temp && mv temp changelog.md
