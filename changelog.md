@@ -74,4 +74,7 @@ Changes:
 - [bba4568](http://github.com/zzzookie/unit-demo-cra/commit/bba45684a06823e78dc682b9d9bb9a876a94e003) - ci: issue test v1
 - [1b274f1](http://github.com/zzzookie/unit-demo-cra/commit/1b274f1973efa59d13a1837174fc78646ef67412) - Merge branch 'tests' of github.com:zzzookie/unit-demo-cra into tests
 - [d72a9a6](http://github.com/zzzookie/unit-demo-cra/commit/d72a9a6e3fe97bfa321d863cfed663b4266c35b3) - ci: issue creating test v3
-- [b943120](http://github.com/zzzookie/unit-demo-cra/commit/b943120bb9a93bba1d851c2b97f9c57aa4b4c8de) - Changelog updated -  added
+- [b943120](http://github.com/zzzookie/unit-demo-cra/commit/b943120bb9a93bba1d851c2b97f9c57aa4b4c8de) - Changelog updated -  added## Release v19
+Changes:
+- [7ad953f](http://github.com/zzzookie/unit-demo-cra/commit/7ad953f85583faa718ceb7d2158bada086b1070e) - ci: release with issue v4
+- [1b4f600](http://github.com/zzzookie/unit-demo-cra/commit/1b4f60091704f08c11af68eed206235030e57c32) - Changelog updated -  added
