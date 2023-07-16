@@ -31,5 +31,4 @@ jobs:
           BODY="Release.\n\n**Author**: ${{ github.actor }}\n**Date**: ${{ github.event.head_commit.timestamp }}"
 
           gh auth login --with-token <<< "${GITHUB_TOKEN}"
-          ISSUE_NUMBER=$(gh issue create --title "$TITLE" --body "$BODY")
-          gh issue label add $ISSUE_NUMBER --label "RELEASE"
+          gh issue create --title "$TITLE" --body "$BODY" --label "RELEASE"
