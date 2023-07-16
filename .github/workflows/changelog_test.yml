@@ -15,7 +15,6 @@ jobs:
         id: changelog_gen
         uses: mikepenz/release-changelog-builder-action@v4.0.0-rc03
         with:
-          tag_filter: v*
           outputFile: changelog.md
 
       - name: read_output
