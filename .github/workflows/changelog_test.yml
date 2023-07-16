@@ -1,0 +1,18 @@
+name: TriggerTest
+
+on:
+  - push
+
+jobs:
+  dispatch_test:
+    runs-on: ubuntu-22.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+    permissions: 
+      contents: write
+    steps:
+      - name: Generate Changelog
+        uses: mikepenz/release-changelog-builder-action@v2
+        with:
+          tag_filter: v*
+          output_file: changelog.md
