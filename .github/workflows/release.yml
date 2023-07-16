@@ -73,7 +73,7 @@ jobs:
 
       - name: Create issue
         id: issue-create
-        uses: peter-evans/create-issue@v3
+        uses: JasonEtco/create-an-issue@v2.9.1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
