@@ -1,4 +1,4 @@
-name: TriggerTest
+name: Changelog Test
 
 on:
   - push
