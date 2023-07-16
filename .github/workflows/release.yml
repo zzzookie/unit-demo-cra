@@ -10,6 +10,8 @@ on:
 jobs:
   create_release:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     permissions:
       contents: write
     steps:
@@ -37,7 +39,7 @@ jobs:
 
       - name: Create release
         run: |
-          git config --local user.email "action@github.com"
+          git config --local user.email "$USER_EMAIL"
           git config --local user.name "$USER_NAME"
           changelog=$(git log $(git describe --tags --abbrev=0)..HEAD --oneline)
           release_version=${{ steps.version.outputs.RELEASE_VERSION }}
