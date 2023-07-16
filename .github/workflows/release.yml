@@ -73,6 +73,7 @@ jobs:
       
       - name: Create Issue
         run: |
+          export GH_TOKEN=""
           REPO_OWNER=${{ github.repository_owner }}
           REPO_NAME=${{ github.repository }}
           TZ="Europe/Moscow"
