@@ -1,10 +1,10 @@
-Скрипт /github/workflows/main.yml:
+## Скрипт ```/github/workflows/main.yml```:
 - шаг commitlint: проверка коммитов на соответствие conventional commits для всех коммитов в пулл-реквесте;
 - install: просто проверка что npm i проходит без сбоев;
 - test: проверка юнит-тестами. Если тесты не прошли - pull request не пройдёт;
 - lint: применение линтера. Если линтер выдаёт ошибки - pull request не пройдёт.
 
-Скрипт /github/workflows/release.yml:
+## Скрипт ```/github/workflows/release.yml```:
 - создаётся релиз со всеми нужными данными по тегу v*
 - создаётся changelog, прописывается в релиз
 - changelog добавляется в файл changelog.md - правда, обновляется этот файл пока только в ветке "tests" - уже не стал это исправлять.
