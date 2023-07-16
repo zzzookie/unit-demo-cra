@@ -27,8 +27,9 @@ jobs:
           GITHUB_TOKEN=${{ github.token }}
           REPO_OWNER=${{ github.repository_owner }}
           REPO_NAME=${{ github.repository }}
-          TITLE='New Issue'
-          BODY="Release.\n\n**Author**: ${{ github.actor }}\n**Date**: ${{ github.event.head_commit.timestamp }}"
+          TIMESTAMP=$(date +"%d-%m-%Y %H:%M")
+          TITLE='Release'
+          BODY="Release.<br>**Author**: ${{ github.actor }}<br>**Date**: $TIMESTAMP"
 
           gh auth login --with-token <<< "${GITHUB_TOKEN}"
           gh issue create --title "$TITLE" --body "$BODY" --label "RELEASE"
