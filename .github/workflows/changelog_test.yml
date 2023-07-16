@@ -29,4 +29,19 @@ jobs:
 
       - name: read_output
         run: |
-          echo "${{ steps.changelog_gen.outputs.changelog }}" > changelog.md
+          echo "${{ steps.changelog_gen.outputs.changelog }}" > ./changelog.md
+
+      - name: Write File
+        uses: DamianReeves/write-file-action@v1.2
+        with:
+          path: changelog.md
+          write-mode: append
+          contents: ${{ steps.changelog_gen.outputs.changelog }}
+            
+      - name: Commit & Push
+        uses: Andro999b/push@v1.3
+        with:
+          github_token: ${{ github.token }}
+          branch: tests
+          force: true
+          message: 'Changelog updated - ${LAST_TAG} added'
