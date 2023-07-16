@@ -29,4 +29,4 @@ jobs:
 
       - name: read_output
         run: |
-          echo "${{ steps.changelog_gen.outputs.changelog }}" | cat - changelog.md > temp && mv temp changelog.md
+          echo "${{ steps.changelog_gen.outputs.changelog }}" > changelog.md
