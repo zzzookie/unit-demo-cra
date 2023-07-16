@@ -6,7 +6,7 @@ on:
       - "*"
   workflow_run:
     workflows:
-      - release
+      - Release
 
 jobs:
 
