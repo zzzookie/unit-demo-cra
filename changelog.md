@@ -85,4 +85,10 @@ Changes:
 Changes:
 - [26a98da](http://github.com/zzzookie/unit-demo-cra/commit/26a98da1684d8d9e0425d7d4f5f7caa4075d67d9) - ci: merge branch 'tests' of github.com:zzzookie/unit-demo-cra into tests
 - [638677d](http://github.com/zzzookie/unit-demo-cra/commit/638677d783e76d2c46e183d617eec16ba4f5e052) - ci: release with issue v6
-- [7bf6484](http://github.com/zzzookie/unit-demo-cra/commit/7bf6484f344f687f137e1927bd065ac44fa1e99b) - Changelog updated -  added
+- [7bf6484](http://github.com/zzzookie/unit-demo-cra/commit/7bf6484f344f687f137e1927bd065ac44fa1e99b) - Changelog updated -  added## Release v23
+Changes:
+- [2d74697](http://github.com/zzzookie/unit-demo-cra/commit/2d74697d3bdcb96826036c501fbdc5ef1435674b) - ci: release with issue v8
+- [839e140](http://github.com/zzzookie/unit-demo-cra/commit/839e1403e07f9e15b117f02cd61fb96b33ac5f8d) - ci: release with issue v7
+- [afa41df](http://github.com/zzzookie/unit-demo-cra/commit/afa41df1bb491377d77a885565410e504d985f6a) - ci: merge branch 'tests' of github.com:zzzookie/unit-demo-cra into tests
+- [966924c](http://github.com/zzzookie/unit-demo-cra/commit/966924ccbf1b8d9dfbfa1ff7efe24e4e4ed20392) - ci: release with issue v7
+- [e262956](http://github.com/zzzookie/unit-demo-cra/commit/e262956fdf9b5177409da569cfbf0739e5ee64a1) - Changelog updated -  added
