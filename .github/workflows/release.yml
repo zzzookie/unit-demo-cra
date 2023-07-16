@@ -73,7 +73,6 @@ jobs:
       
       - name: Create Issue
         run: |
-          GITHUB_TOKEN=${{ github.token }}
           REPO_OWNER=${{ github.repository_owner }}
           REPO_NAME=${{ github.repository }}
           TZ="Europe/Moscow"
@@ -81,5 +80,5 @@ jobs:
           TITLE='Release ${{ env.TAG_NAME }}'
           BODY="## Release ${{ env.TAG_NAME }}<br><br>**Author**: @${{ github.actor }}<br>**Date**: $TIMESTAMP MSK<br><br>## Changelog:<br>${{ steps.changelog_gen.outputs.changelog }}"
 
-          gh auth login --with-token <<< "${GITHUB_TOKEN}"
+          gh auth login --with-token <<< "${{ github.token }}"
           gh issue create --title "$TITLE" --body "$BODY" --label "RELEASE"
