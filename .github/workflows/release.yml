@@ -37,10 +37,6 @@ jobs:
         with:
           myToken: ${{ github.token }}
 
-      - name: Add Changelog to Env
-        id: changelog_env
-        run: echo "CHANGELOG=${{ steps.changelog_gen.outputs.changelog }}" >> $GITHUB_ENV
-
       - name: Write Changelog File
         uses: DamianReeves/write-file-action@v1.2
         with:
@@ -82,11 +78,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           title: 'Release ${{ env.TAG_NAME }}'
-          body: |
-
-            **Author**: ${{ github.actor }}
-            **Date**: ${{ github.event.head_commit.timestamp }}
-
           labels: RELEASE
           milestone: null
           update_existing: true

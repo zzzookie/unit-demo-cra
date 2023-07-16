@@ -1,7 +1,9 @@
 name: TriggerTest
 
 on:
-  - push
+  push:
+    tags:
+      - "abc*"
 
 jobs:
   dispatch_test:
