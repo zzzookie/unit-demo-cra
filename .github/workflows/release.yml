@@ -1,4 +1,4 @@
-name: Create Release
+name: Release
 
 on:
   push:
@@ -8,10 +8,12 @@ on:
 jobs:
   create_release:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
     permissions:
       contents: write
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+
     steps:
     
       - name: Checkout code
@@ -25,27 +27,62 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-          echo "LAST_TAG=$(git describe --abbrev=0 --tags v*)" >> $GITHUB_ENV
+          echo "LAST_TAG=$(git describe --tags --abbrev=0 ${TAG_NAME}^)" >> $GITHUB_ENV
           echo "USER_NAME=$(git --no-pager show -s --format='%aN')" >> $GITHUB_ENV
           echo "USER_EMAIL=$(git --no-pager show -s --format='%aE')" >> $GITHUB_ENV
+      
+      - name: Generate Changelog
+        id: changelog_gen
+        uses: metcalfc/changelog-generator@v4.0.0
+        with:
+          myToken: ${{ github.token }}
 
-      - name: Generate changelog
-        id: changelog
-        run: |
-          echo "CHANGELOG=$(git log $(git describe --tags --abbrev=0 ${LAST_TAG})..HEAD --oneline)" >> $GITHUB_ENV
+      - name: Write Changelog File
+        uses: DamianReeves/write-file-action@v1.2
+        with:
+          path: changelog.md
+          write-mode: append
+          contents: |
+            ## Release ${{ env.TAG_NAME }}
+            Changes:
+            ${{ steps.changelog_gen.outputs.changelog }}
+            
+      - name: Commit & Push
+        uses: Andro999b/push@v1.3
+        with:
+          github_token: ${{ github.token }}
+          branch: tests
+          force: true
+          message: 'Changelog updated - ${{ env.LAST_TAG }} added'
 
       - name: Create release
         run: |
           git config --local user.email "$USER_EMAIL"
           git config --local user.name "$USER_NAME"
-          changelog=$(git log $(git describe --tags --abbrev=0)..HEAD --oneline)
-          release_version=$RELEASE_VERSION
+          release_version=${TAG_NAME}
           release_date=$(date -u +"%d-%m-%Y")
-          release_title="Release $RELEASE_VERSION"
+          release_title="Release ${TAG_NAME}"
           release_body="**Author**: @${{ github.actor }}
           **Date**: ${release_date}
           **Version**: ${TAG_NAME}
 
           **Changelog**:
-          ${CHANGELOG}"
+          ${{ steps.changelog_gen.outputs.changelog }}"
           gh release create ${TAG_NAME} -t "${release_title}" -n "${release_body}"
+
+      
+      - name: Create Issue
+        run: |
+          export GH_TOKEN=""
+          REPO_OWNER=${{ github.repository_owner }}
+          REPO_NAME=${{ github.repository }}
+          TIMESTAMP=$(TZ=Europe/Moscow date +"%d-%m-%Y %H:%M")
+          TITLE='Release ${{ env.TAG_NAME }}'
+          BODY="## Release ${{ env.TAG_NAME }}<br>
+          **Author**: @${{ github.actor }}
+          **Date**: $TIMESTAMP MSK
+          ### Changelog:
+          ${{ steps.changelog_gen.outputs.changelog }}"
+
+          gh auth login --with-token <<< "${{ github.token }}"
+          gh issue create --title "$TITLE" --body "$BODY" --label "RELEASE"

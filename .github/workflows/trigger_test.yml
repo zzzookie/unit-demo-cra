@@ -1,13 +1,17 @@
 name: TriggerTest
 
 on:
-  - push
+  push:
+    tags:
+      - "abc*"
 
 jobs:
   dispatch_test:
     runs-on: ubuntu-22.04
     env:
       GH_TOKEN: ${{ github.token }}
+    permissions: 
+      contents: write
     steps:
 
       - name: Set up environment variables
@@ -23,11 +27,11 @@ jobs:
         with:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
-          token: $GH_TOKEN
+          token: ${GH_TOKEN}
           event_type: checks
           wait_time: 15
           max_time: 120
-          client_payload: '{"git-ref": "${{ github.event.inputs.git-ref }}"}'
+          client_payload: '{"git-ref": "${{ github.ref }}", "git-sha": "${{ github.sha }}"}'
 
       - name: Check Output
         run: |
