@@ -32,8 +32,7 @@ jobs:
       - name: Generate changelog
         id: changelog
         run: |
-          changelog=$(git log $(git describe --tags --abbrev=0 ${LAST_TAG})..HEAD --oneline)
-          echo "::set-output name=CHANGELOG::$changelog"
+          echo "CHANGELOG=$(git log $(git describe --tags --abbrev=0 ${LAST_TAG})..HEAD --oneline)" >> $GITHUB_ENV
 
       - name: Create release
         run: |
@@ -48,5 +47,5 @@ jobs:
           **Version**: ${TAG_NAME}
 
           **Changelog**:
-          ${{ steps.changelog.outputs.CHANGELOG }}"
+          ${CHANGELOG}"
           gh release create ${TAG_NAME} -t "${release_title}" -n "${release_body}"
