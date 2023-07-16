@@ -11,6 +11,12 @@ jobs:
     permissions: 
       contents: write
     steps:
+    
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Generate Changelog
         id: changelog_gen
         uses: mikepenz/release-changelog-builder-action@v4.0.0-rc03
