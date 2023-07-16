@@ -12,6 +12,7 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     permissions:
       contents: write
+      issues: write 
 
     steps:
     
@@ -67,5 +68,25 @@ jobs:
           **Version**: ${TAG_NAME}
 
           **Changelog**:
-          ${CHANGELOG}"
+          ${{ steps.changelog_gen.outputs.changelog }}"
           gh release create ${TAG_NAME} -t "${release_title}" -n "${release_body}"
+
+      - name: Create issue
+        id: issue-create
+        uses: peter-evans/create-issue@v3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          title: 'Release ${{ env.TAG_NAME }}'
+          body: |
+
+            **Author**: ${{ github.actor }}
+            **Date**: ${{ github.event.head_commit.timestamp }}
+
+          labels: RELEASE
+          milestone: null
+          update_existing: true
+
+      - name: Read issue number
+        id: issue-read
+        run: echo "ISSUE_NUMBER=${{ steps.issue-create.outputs.number }}" >> $GITHUB_ENV
