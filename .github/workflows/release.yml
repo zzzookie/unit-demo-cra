@@ -76,13 +76,13 @@ jobs:
           export GH_TOKEN=""
           REPO_OWNER=${{ github.repository_owner }}
           REPO_NAME=${{ github.repository }}
-          TZ="Europe/Moscow"
-          TIMESTAMP=$(date +"%d-%m-%Y %H:%M")
+          TIMESTAMP=$(TZ=Europe/Moscow date +"%d-%m-%Y %H:%M")
           TITLE='Release ${{ env.TAG_NAME }}'
           BODY="## Release ${{ env.TAG_NAME }}<br>
-          **Author**: @${{ github.actor }}<br>
-          **Date**: $TIMESTAMP MSK<br>
-          **Changelog:**<br>${{ steps.changelog_gen.outputs.changelog }}"
+          **Author**: @${{ github.actor }}
+          **Date**: $TIMESTAMP MSK
+          ### Changelog:
+          ${{ steps.changelog_gen.outputs.changelog }}"
 
           gh auth login --with-token <<< "${{ github.token }}"
           gh issue create --title "$TITLE" --body "$BODY" --label "RELEASE"
