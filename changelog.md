@@ -95,4 +95,12 @@ Changes:
 Changes:
 - [3e47dd6](http://github.com/zzzookie/unit-demo-cra/commit/3e47dd624e6d63b2f33156ff4236a3f8d6a045b0) - ci: merge branch 'tests' of github.com:zzzookie/unit-demo-cra into tests
 - [ef949ef](http://github.com/zzzookie/unit-demo-cra/commit/ef949efbcc0e9200e1970d51d707bc4e7f5eb17e) - ci: release with issue v9
-- [a0f0ee9](http://github.com/zzzookie/unit-demo-cra/commit/a0f0ee93b4c90d95123e852d8f4c151e100daa33) - Changelog updated -  added
+- [a0f0ee9](http://github.com/zzzookie/unit-demo-cra/commit/a0f0ee93b4c90d95123e852d8f4c151e100daa33) - Changelog updated -  added## Release v25
+Changes:
+- [ad90f87](http://github.com/zzzookie/unit-demo-cra/commit/ad90f8704bda7827b772a0110518fa71a1239158) - test: commit message without error
+- [700cc71](http://github.com/zzzookie/unit-demo-cra/commit/700cc71a4e23b04af0a4ea04f1e3dfe2be7b42a4) - commit message error
+- [b0f2444](http://github.com/zzzookie/unit-demo-cra/commit/b0f2444a8b8aa1df3f287bf6281e022c9be898fb) - ci: update README.md
+- [7099d76](http://github.com/zzzookie/unit-demo-cra/commit/7099d7655b9e41fbbad6ba9675d6f8cb2c8ba5bd) - ci: update README.md
+- [0bd9a41](http://github.com/zzzookie/unit-demo-cra/commit/0bd9a41ad68ea8035ed9d9e0dbf919115fcecf80) - ci: update README.md
+- [58caf5b](http://github.com/zzzookie/unit-demo-cra/commit/58caf5b09e85feb1c68267753b7d5be15b044170) - ci: release flow
+- [0442e5e](http://github.com/zzzookie/unit-demo-cra/commit/0442e5ed8dc4e6a8bdfeab5cfaa03c6f5aca2fe0) - Changelog updated -  added
